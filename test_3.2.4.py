@@ -3,11 +3,11 @@ import unittest
 import time
 
 class TestStepik(unittest.TestCase):
-	def test_form_1():
+	def test_form_1(self):
 
 		f1_link = "http://suninjuly.github.io/get_attribute.html"
 		browser = webdriver.Chrome()
-		browser.get(link)
+		browser.get(f1_link)
 
 		# Ваш код, который заполняет обязательные поля
 		f1_name = browser.find_element_by_css_selector(".first_block .first")
@@ -38,12 +38,18 @@ class TestStepik(unittest.TestCase):
 
 		# с помощью assert проверяем, что ожидаемый текст совпадает с текстом на странице сайта
 		f1_ER = 'Congratulations! You have successfully registered!'
-		assertEquals(f1_ER, f1_welcome_text, "First ER is not match")
+		self.assertEquals(f1_ER, f1_welcome_text, "First ER is not match")
+
+		first_window = browser.window_handles[0]
 
 
-	def test_form_2():
+	def test_form_2(self):
 		f2_link = "http://suninjuly.github.io/registration2.html"
-		f2_browser = webdriver.execute_script("window.open(f2_link)")
+		# browser.execute_script("window.open(f2_link)")
+		browser.get(f2_link)
+
+		second_window = browser.window_handles[1]
+		browser.switch_to.window(second_window)
 
 		# заполняет обязательные поля
 		f2_name = f2_browser.find_element_by_css_selector(".first_block .first")
@@ -76,15 +82,19 @@ class TestStepik(unittest.TestCase):
 
 		# с помощью assert проверяем, что ожидаемый текст совпадает с текстом на странице сайта
 		f2_ER = 'Congratulations! You have successfully registered!'
-		assertEquals(f2_ER, f2_welcome_text, "Second ER is not match")
+		self.assertEquals(f2_ER, f2_welcome_text, "Second ER is not match")
 
-		assertEquals(f1_ER, f2_ER, "ERs are not match")
+		self.assertEquals(f1_ER, f2_ER, "ERs are not match")
 
+if __name__ == "__main__":
+    unittest.main()
 
 		# ждем чтобы взглянуть
-		time.sleep(10)
+time.sleep(10)
 
 		# закрываем
-		browser.quit()
+browser.switch_to.windows(second_window)
+browser.close() 
+browser.quit()
 
 		
