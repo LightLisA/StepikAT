@@ -1,7 +1,8 @@
-# StepikAT
+# pytest cache directory #
 
-мои записи
-что то новое, пробуем и полчится
+This directory contains data from the pytest's cache plugin,
+which provides the `--lf` and `--ff` options, as well as the `cache` fixture.
 
-C:\Users\user> environments\selenium_env\Scripts\activate.bat
-(selenium_env) C:\Users\user>python c:\Users\user\selenium_course\get_method.py
+**Do not** commit this to version control.
+
+See [the docs](https://docs.pytest.org/en/stable/how-to/cache.html) for more information.
