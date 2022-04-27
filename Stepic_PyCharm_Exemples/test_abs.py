@@ -1,17 +1,11 @@
-from selenium.webdriver.common.by import By
 import time
+from selenium.webdriver.common.by import By
 
 link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
 
 
-def button_values():
-    return ['Ajouter au panier', 'Добавить в корзину', 'Añadir al carrito']
-    # конечно не универсальный проверщик значений, но если кт знает как написать более универсально,
-    # подскажите пожалуйста
-
-
-def test_guest_should_see_login_link(browser):
+def test_guest_should_see_basket_button(browser):
     browser.get(link)
-    button_1 = browser.find_element(By.CLASS_NAME, "btn-add-to-basket").text
-    #time.sleep(10)
-    assert button_1 in button_values(), "Имя кнопки не совпадает"
+    # time.sleep(30) #please uncomment this string for checking
+    basket = browser.find_element(By.CLASS_NAME, value='btn-add-to-basket')
+    assert basket != None, "The button wasn't found"
